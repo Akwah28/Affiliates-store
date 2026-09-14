@@ -1,0 +1,6 @@
+{
+  "name": "Affiliate Storefront",
+  "description": "A complete affiliate storefront with product discovery, affiliate redirects, click analytics, and admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

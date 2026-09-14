@@ -1,0 +1,118 @@
+{
+  "entities": {
+    "Store": {
+      "title": "Store",
+      "description": "Storefront metadata, branding, and social configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "logo": { "type": "string" },
+        "description": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "instagram": { "type": "string" },
+        "facebook": { "type": "string" },
+        "tiktok": { "type": "string" },
+        "seoTitle": { "type": "string" },
+        "seoDescription": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "slug"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Admin user profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "superadmin"] },
+        "storeId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Affiliate product listing",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeId": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "shortDescription": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "price": { "type": "number" },
+        "oldPrice": { "type": "number" },
+        "currency": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "affiliateUrl": { "type": "string" },
+        "ctaText": { "type": "string" },
+        "badge": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["active", "inactive", "draft"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["storeId", "name", "slug", "image", "affiliateUrl", "status"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeId": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["storeId", "name", "slug"]
+    },
+    "Click": {
+      "title": "Click",
+      "description": "Affiliate click log record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeId": { "type": "string" },
+        "productId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "referrer": { "type": "string" }
+      },
+      "required": ["storeId", "productId", "timestamp"]
+    }
+  },
+  "firestore": {
+    "stores": {
+      "path": "stores/{storeId}",
+      "entity": "Store"
+    },
+    "users": {
+      "path": "users/{userId}",
+      "entity": "User"
+    },
+    "products": {
+      "path": "products/{productId}",
+      "entity": "Product"
+    },
+    "categories": {
+      "path": "categories/{categoryId}",
+      "entity": "Category"
+    },
+    "clicks": {
+      "path": "clicks/{clickId}",
+      "entity": "Click"
+    }
+  }
+}
